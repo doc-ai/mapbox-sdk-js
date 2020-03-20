@@ -130,13 +130,13 @@ Tilesets.createTilesetSource = function(config) {
   v.assertShape({
     id: v.required(v.string),
     file: v.required(v.file),
-    ownerId: v.string
+    username: v.required(v.string)
   })(config);
 
   return this.client.createRequest({
     method: 'POST',
-    path: '/tilesets/v1/sources/:ownerId/:id',
-    params: pick(config, ['ownerId', 'id']),
+    path: '/tilesets/v1/sources/:username/:id',
+    params: pick(config, ['username', 'id']),
     file: config.file,
     sendFileAs: 'form'
   });
